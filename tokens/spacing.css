@@ -1,0 +1,27 @@
+/* Spacing, borders, radii. NOT defined in 00-core.md — proposed values, flagged for review.
+   Hard rule §2: no gradients, drop shadows, glows or 3D effects — so no shadow tokens exist. */
+:root{
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-5:24px;
+  --space-6:32px;
+  --space-7:48px;
+  --space-8:64px;
+  --space-9:96px;
+  --space-10:128px;
+
+  --border-width:1px;
+  --border-width-strong:2px;
+
+  --radius-none:0;
+  --radius-sm:2px;
+  --radius-default:var(--radius-none);  /* flat, square-cornered default */
+
+  --shadow-none:none;
+
+  --duration-fast:120ms; /* @kind other */
+  --duration-base:200ms; /* @kind other */
+  --ease-standard:cubic-bezier(.2,0,0,1); /* @kind other */
+}

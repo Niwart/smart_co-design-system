@@ -1,0 +1,39 @@
+/* SmartCo color tokens — source: 00-core.md §3 (v1.1). Only these colors are allowed. */
+:root{
+  /* 3.1 Brand */
+  --primary:#0065FC;      /* Brand Navy (hex is a vivid blue) */
+  --secondary:#43E6A2;    /* Brand Teal — never text */
+  --accent-1:#E65C43;     /* Brand Amber — one highlight per layout */
+  --accent-2:#E6D443;     /* Brand Sun — one highlight per layout */
+  /* 3.2 Neutrals */
+  --neutral-900:#000000;
+  --neutral-700:#4D4D4D;
+  --neutral-200:#CCCCCC;
+  --white:#FFFFFF;
+
+  /* Semantic aliases — approved pairs from §3.3 */
+  --surface-page:var(--white);
+  --surface-inverse:var(--primary);
+  --surface-support:var(--secondary);
+  --surface-accent-1:var(--accent-1);
+  --surface-accent-2:var(--accent-2);
+
+  --text-heading:var(--neutral-900);
+  --text-body:var(--neutral-700);
+  --text-caption:var(--neutral-700);
+  --text-highlight:var(--primary);       /* highlighted words in headlines, overline on white */
+  --text-on-inverse:var(--white);        /* headlines + body on primary */
+  --text-on-support:var(--neutral-900);  /* on secondary / accent-1 / accent-2 */
+  --text-number-accent-1:var(--accent-1);/* number role only, >= 24px */
+  --text-number-accent-2:var(--accent-2);/* number role only, >= 48px (contrast exception) */
+
+  --eyebrow-box-bg:var(--primary);
+  --eyebrow-box-fg:var(--white);
+
+  --border-default:var(--neutral-200);
+  --border-table:var(--neutral-200);
+
+  /* §2: text on photos needs a solid overlay >= 80% opacity */
+  --overlay-photo-dark:rgb(0 0 0 / 0.8);
+  --overlay-photo-primary:rgb(0 101 252 / 0.8);
+}

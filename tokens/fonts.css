@@ -1,0 +1,11 @@
+/* Roboto — brand font for both font-heading and font-body (uploaded; SIL OFL, see fonts/OFL.txt).
+   Only allowed weights are shipped: 400 Regular, 600 SemiBold, 700 Bold (+ italics). */
+@font-face{font-family:"Roboto";font-style:normal;font-weight:400;font-display:swap;src:url("../fonts/Roboto-Regular.ttf") format("truetype");}
+@font-face{font-family:"Roboto";font-style:italic;font-weight:400;font-display:swap;src:url("../fonts/Roboto-Italic.ttf") format("truetype");}
+@font-face{font-family:"Roboto";font-style:normal;font-weight:600;font-display:swap;src:url("../fonts/Roboto-SemiBold.ttf") format("truetype");}
+@font-face{font-family:"Roboto";font-style:italic;font-weight:600;font-display:swap;src:url("../fonts/Roboto-SemiBoldItalic.ttf") format("truetype");}
+@font-face{font-family:"Roboto";font-style:normal;font-weight:700;font-display:swap;src:url("../fonts/Roboto-Bold.ttf") format("truetype");}
+@font-face{font-family:"Roboto";font-style:italic;font-weight:700;font-display:swap;src:url("../fonts/Roboto-BoldItalic.ttf") format("truetype");}
+/* Social only (social.md): Medium 500 for job titles, Black 900 for the welcome label. */
+@font-face{font-family:"Roboto";font-style:normal;font-weight:500;font-display:swap;src:url("../fonts/Roboto-Medium.ttf") format("truetype");}
+@font-face{font-family:"Roboto";font-style:normal;font-weight:900;font-display:swap;src:url("../fonts/Roboto-Black.ttf") format("truetype");}

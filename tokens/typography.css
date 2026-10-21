@@ -1,0 +1,45 @@
+/* SmartCo typography — source: 00-core.md §4 (v1.1).
+   Brand font: Roboto for both heading and body (uploaded files, fonts/).
+   Sizes are NOT defined in core; the px scale below is a proposed 1.333 modular scale for screen/documents (base 16).
+   For 1920x1080 decks multiply by 2 (see --type-deck-multiplier). */
+:root{
+  --font-heading:"Roboto",system-ui,sans-serif;
+  --font-body:"Roboto",system-ui,sans-serif;
+
+  --weight-regular:400;
+  --weight-semibold:600;
+  --weight-bold:700;
+
+  /* proposed modular scale (ratio 1.333) */
+  --size-caption:12px;
+  --size-eyebrow:14px;
+  --size-overline:14px;
+  --size-body:16px;
+  --size-h2:21px;
+  --size-h1:28px;
+  --size-display:38px;
+  --size-number:50px;   /* >= 48px so accent-2 numbers are allowed */
+  --type-deck-multiplier:2;
+
+  /* line heights */
+  --lh-heading:1.2; /* @kind other */
+  --lh-body:1.5; /* @kind other */
+  --lh-caption:1.4; /* @kind other */
+  --lh-number:1.0; /* @kind other */
+
+  /* letter spacing */
+  --ls-overline:0.3em;   /* +30% */
+  --ls-caption:0.01em;   /* +1% */
+  --ls-number:-0.02em;   /* -2% */
+
+  /* role shorthands */
+  --type-display:var(--weight-bold) var(--size-display)/var(--lh-heading) var(--font-heading);
+  --type-h1:var(--weight-bold) var(--size-h1)/var(--lh-heading) var(--font-heading);
+  --type-h2:var(--weight-semibold) var(--size-h2)/var(--lh-heading) var(--font-heading);
+  --type-eyebrow:var(--weight-regular) var(--size-eyebrow)/var(--lh-body) var(--font-body);
+  --type-overline:var(--weight-bold) var(--size-overline)/var(--lh-heading) var(--font-heading);
+  --type-body:var(--weight-regular) var(--size-body)/var(--lh-body) var(--font-body);
+  --type-body-strong:var(--weight-semibold) var(--size-body)/var(--lh-body) var(--font-body);
+  --type-caption:var(--weight-regular) var(--size-caption)/var(--lh-caption) var(--font-body);
+  --type-number:var(--weight-bold) var(--size-number)/var(--lh-number) var(--font-heading);
+}
