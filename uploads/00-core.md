@@ -120,7 +120,7 @@ role: Single source of truth. All asset files inherit from this file.
 | File | Covers | Status |
 |---|---|---|
 | `deck.md` | Presentations 16:9 | planned |
-| `documents.md` | Word documents: white papers, proposals, reports, sell sheets | active (v0.27) |
+| `documents.md` | Word documents: white papers, proposals, reports, sell sheets | active (v0.28) |
 | `social.md` | Social posts: LinkedIn 1080×1080 (New joiner, We are hiring, Empty) | active (v0.3) |
 
 ## 7. Changelog

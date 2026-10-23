@@ -1,6 +1,6 @@
 ---
 name: smartco-design
-description: Use this skill to generate well-branded interfaces and assets for SmartCo, either for production or throwaway prototypes/mocks/etc. Contains essential design guidelines, colors, type, fonts, assets, and UI kit components for protoyping. Also use for SmartCo social media posts (LinkedIn 1080×1080: new joiner / welcome, we are hiring / vacancy, announcements, events, quotes, stats).
+description: Use this skill to generate well-branded interfaces and assets for SmartCo, either for production or throwaway prototypes/mocks/etc. Contains essential design guidelines, colors, type, fonts, assets, and UI kit components for protoyping. Also use for SmartCo social media posts (LinkedIn 1080×1080: new joiner / welcome, we are hiring / vacancy, announcements, events, quotes, stats) and SmartCo Word documents (A4 .docx/PDF: white papers, reports, proposals, sell sheets / one-pagers), including reformatting an existing document to the brand.
 user-invocable: true
 ---
 
@@ -10,7 +10,34 @@ If the user invokes this skill without any other guidance, ask them what they wa
 
 For Word documents (white papers, proposals, reports) also follow documents.md. For social posts follow social.md.
 
-Key rules (from uploads/00-core.md): only the 8 color tokens; heading font 700/600 and body font 400/600 only; no gradients, shadows, glows or 3D (except the hexagon shadows built into the social template); max one accent per layout; accent colors as text only in the `number` role on white (accent-1 ≥24px, accent-2 ≥48px); ALL CAPS only for eyebrow and overline; body text left-aligned; ≥80% solid overlay under text on photos.
+Key rules (from uploads/00-core.md): only the 8 color tokens; heading font 700/600 and body font 400/600 only; no gradients, shadows, glows or 3D (except the hexagon shadows built into the social template); max one accent per layout; accent colors as text only in the `number` role on white (accent-1 ≥24px, accent-2 ≥48px); ALL CAPS only for eyebrow and overline; body text left-aligned; ≥80% solid overlay under text on photos. Format-specific overrides listed in the `Overrides:` header of documents.md / social.md take precedence over these key rules.
+
+## Routing: documents
+
+Trigger words: document, doc, Word, Word document, .docx, .dotx, A4, PDF document, long-form, write-up, paper, publication, report template, branded document.
+
+| Signal in prompt | Type | Sections (documents.md §4) |
+|---|---|---|
+| white paper, whitepaper, thought leadership, research paper, insight paper, point of view, POV | White paper | full anatomy 1–12 |
+| report, annual report, research report, findings, study, survey results, analysis | Report | full anatomy; Foreword optional |
+| proposal, bid, tender response, RFP response, pitch document, statement of work, SOW, engagement letter | Proposal | skip optional (*) sections unless asked |
+| sell sheet, one-pager, one pager, fact sheet, datasheet, product sheet, brochure page, leave-behind | Sell sheet | cover + 1–2 pages; no TOC, no endnotes |
+| reformat, rebrand, apply SmartCo style, brand this doc, clean up formatting, convert to SmartCo template, fix styles, check against guidelines, audit this document | Existing file | §10.2 color replacement, §3 styles, §13 checklist |
+
+Building blocks (names as in documents.md): cover, table of contents, foreword, executive summary, numbered sections, practitioner lens, conclusion, appendix, endnotes, about SmartCo, contact the authors, about the authors, back page, stat block / key number (§5), callout (§6.1), stage / category cards (§6.2), table (§7), figure / chart (§8).
+
+Files:
+- Rules: documents.md (read fully; its `Overrides:` beat core)
+- Word template: templates/document/SmartCo-Document.dotx (placeholders only)
+- Real example: templates/document/SmartCo-Document-sample.docx
+- HTML preview: templates/document/Document.dc.html
+- Generator: templates/document/build-dotx.js
+
+1. Always start from SmartCo-Document.dotx, never a blank file. Format only through named styles (documents.md §3.1); no direct formatting.
+2. Deliverable is .docx (editable) and/or PDF (documents.md §12). Ask which if not stated. File name: "SmartCo – <Title> – <Month YYYY>".
+3. If the type is unclear, ask one question: "White paper, report, proposal or sell sheet?"
+4. Not covered by documents.md — ask, don't guess: slides / deck / presentation (deck.md is planned, not active), social posts (→ social.md), "case study" (document or social post?), press release, email, web page.
+5. Before handoff run the checklist in documents.md §13.
 
 ## Routing: social posts
 

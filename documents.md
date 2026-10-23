@@ -1,8 +1,8 @@
 ---
 file: documents.md
 brand: SmartCo
-version: 0.27
-updated: 2026-10-20
+version: 0.28
+updated: 2026-10-23
 inherits: 00-core.md v1.1
 covers: Word documents (.docx) — white papers, proposals, reports, sell sheets
 reference: "AI in Programme Delivery — Campbell & Khan" (June 2026 white paper, A4, 27 pp.)
@@ -17,6 +17,7 @@ Overrides:
   - core §4.2 `h1` line height 1.2 — `Heading 1` in documents uses 1.5 (multiple). Reason: brand decision for documents. Approved 2026-09-30.
   - core §3 colors — `Author Contact` uses #404040 (documents-only token `neutral-750`), author contact lines only (§4). Reason: brand decision. Approved 2026-10-08.
   - core §4.3 scale ratio (SHOULD) — h1 20 / h2 18 / h3 16 pt sit closer than 1.25. Reason: brand decision for documents. Approved 2026-09-30.
+  - core §4.1 `font-body` weights 400/600 — character styles `Callout Lead` and `Callout Quote` use Roboto 700 inside callouts only (§6.1). Reason: as built in the template. Approved 2026-10-23.
 ---
 
 # SmartCo — Documents (Microsoft Word)
@@ -250,7 +251,7 @@ As in the reference doc, a key number and its explanation sit together in a fill
 
 - Every figure/table is numbered in one sequence and captioned below in `Caption`: `Figure N. Sentence explaining what to see.` Use *References → Insert Caption* (label "Figure") so numbering stays automatic.
 - Figure title above the image MAY be set in `Heading 3` + one `Body Compact` subtitle line.
-- Charts: series colors in theme order — `primary`, `secondary`, `accent-1` (highlight series only). Axes, gridlines and dashed "baseline" lines in `neutral-200`/`neutral-700`; labels in `neutral-900`/`neutral-700`, never accents (core §3.3). Chart text ≥ 9 pt Roboto.
+- Charts: series colors in theme order — `primary`, `secondary`, `accent-1` (highlight series only). Axes, gridlines and dashed "baseline" lines in `neutral-200`/`neutral-700`; labels in `neutral-900`, never `neutral-700` or accents (core §3.3). Chart text ≥ 9 pt Roboto.
 - Chart images exported from other tools MUST use Roboto and core colors; PNG at ≥ 2× (≥ 300 dpi at placed size) or SVG/EMF.
 - Brand graphic: hexagon cluster `assets/brand-hexagons.png` (`primary` + `secondary`), on the cover only (optionally the back page). Placement (as in the reference doc):
   - Size **8 × 7.53 cm** (W × H, lock aspect ratio). Fits inside the page: right edge at 20.97 cm, bottom edge at 29.66 cm.
@@ -344,11 +345,11 @@ The reference doc contains these values; replace as shown:
 
 ## 14. Changelog
 
+- 0.28 — 2026-10-23 — Chart labels `neutral-900` only (§8); override for 700 weight in `Callout Lead` / `Callout Quote`; duplicate 0.26 entry removed.
+
 - 0.27 — 2026-10-20 — All document text `neutral-700` → `neutral-900`; cover hexagon position H 12.97 cm / V 22.13 cm.
 
 - 0.26 — 2026-10-19 — `Eyebrow`: limit of one per page removed.
-
-- 0.26 — 2026-10-19 — `Eyebrow`: no per-page limit.
 
 - 0.25 — 2026-10-19 — Template holds placeholders only; real examples moved to the sample file.
 
