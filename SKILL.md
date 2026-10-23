@@ -1,6 +1,6 @@
 ---
 name: smartco-design
-description: Use this skill to generate well-branded interfaces and assets for SmartCo, either for production or throwaway prototypes/mocks/etc. Contains essential design guidelines, colors, type, fonts, assets, and UI kit components for protoyping. Also use for SmartCo social media posts (LinkedIn 1080×1080: new joiner / welcome, we are hiring / vacancy, announcements, events, quotes, stats), SmartCo Word documents (A4 .docx/PDF: white papers, reports, proposals, sell sheets / one-pagers), including reformatting an existing document to the brand, and SmartCo presentations (16:9 decks: PowerPoint, Google Slides, PDF, HTML slides).
+description: Use this skill to generate well-branded interfaces and assets for SmartCo, either for production or throwaway prototypes/mocks/etc. Contains essential design guidelines, colors, type, fonts, assets, and UI kit components for protoyping. Also use for SmartCo social media posts (LinkedIn 1080×1080: new joiner / welcome, we are hiring / vacancy, announcements, events, quotes, stats), SmartCo Word documents (A4 .docx/PDF: white papers, reports, proposals, sell sheets / one-pagers), including reformatting an existing document to the brand, and SmartCo presentations (16:9 decks in PowerPoint / Google Slides / PDF / HTML: sales and credentials decks, client proposals, client stories / case studies, webinar and workshop slides, status updates, single slides, applying the SmartCo master to an existing deck).
 user-invocable: true
 ---
 
@@ -58,17 +58,48 @@ Trigger words: social, social media, social post, post, LinkedIn, LI post, feed 
 
 ## Routing: presentations
 
-Trigger words: presentation, deck, slides, slide deck, slide, PowerPoint, PPT, .pptx, .potx, Google Slides, keynote, 16:9, pitch deck, sales deck, webinar slides, workshop slides.
+Trigger words: presentation, deck, slides, slide deck, slide, slideshow, PowerPoint, PPT, .pptx, .potx, master slide, slide master, Google Slides, Keynote (the app), 16:9, widescreen, pitch deck, sales deck, credentials deck, capabilities deck, proposal deck, client deck, board deck, QBR deck, webinar slides, workshop slides, training slides, talk, keynote.
 
-| Signal in prompt | Masters (deck.md §4, `variant`) |
-|---|---|
-| sales deck, pitch deck, client proposal, credentials | `cover-a` / `cover-b`, `partnership` (if a client is named), `contents`, `section-header-a`, `template-1`…`template-4`, `two-column-*`, `quote`, `quote-lead`, `meet-the-team`, `end` |
-| webinar, workshop, training, talk, keynote | `cover-a-v2` / `cover-b-v2`, `contents`, `section-header-a`, `template-*`, `alternate-graphic-*`, `full-image`, `end` |
-| results, QBR, update, delivery plan, timeline | `cover-a`, `template-1` / `template-3` (charts, tables), `delivery-yellow`, `two-column-blue`, `end` |
-| testimonial, client quote | `quote` |
-| team, who we are, your team | `meet-the-team`, `quote-lead` |
-| single slide, one slide, add a slide | the one master that fits (deck.md §4) |
-| reformat, rebrand, apply SmartCo style to a deck, check this deck | deck.md §2 theme, §3 type scale, §12 checklist |
+Not a deck: a single social image or LinkedIn carousel (→ social.md), a Word / PDF document (→ documents.md), "keynote" meaning a written speech with no slides — ask.
+
+### Deck type → slide sequence
+
+Layout names as in the PowerPoint master; `variant` in Deck.dc.html (deck.md §4).
+
+| Signal in prompt | Deck type | Default sequence |
+|---|---|---|
+| sales deck, pitch deck, credentials, capabilities, about SmartCo, intro deck, who we are | Sales / credentials | Cover A or B → Contents → About us (Template 2) → Why SmartCo (Template 1, comparison table) → How we do it (Template 4) → What we do (Template 1, practice cards) → Client stories (1_Section Header A × n) → Quote → Meet the Team → End Slide |
+| proposal, client proposal, bid, tender, RFP response, pitch for <client> | Client proposal | Partnership (SmartCo × client) → Contents → Section Header A per part → Template 3 / 4 (understanding, approach) → Template 9 - Delivery Yellow (plan, timeline) → Template 1 (team, commercials table) → 1_Quote template (your SmartCo lead) → End Slide |
+| client story, case study, success story, reference | Client story | 1_Section Header A with client logo: title "Client: outcome", The challenge → What we delivered, client quote |
+| webinar, workshop, training, talk, event, conference, keynote | Talk / event | Cover A v2 or B v2 (photo) → Contents → Section Header A per part → Template 1–4, Template 7 / 8 (Alternate Graphic) → Full page image → End Slide |
+| update, status, QBR, results, review, progress report, steering | Update / results | Cover A → Template 1 / 3 (charts, tables, key numbers) → Template 9 - Delivery Yellow (milestones, timeline) → Template 6 two-column → End Slide |
+| single slide, one slide, add a slide, slide about X | One slide | the one layout from the table below |
+| reformat, rebrand, apply SmartCo style to a deck, convert to SmartCo master, check this deck, audit slides | Existing deck | apply SmartCo-Deck.potx (*Design → Browse Themes*), map each slide to a layout below, then deck.md §12 checklist |
+
+### Slide content → layout
+
+| Keywords in the slide content or request | PowerPoint layout | `variant` |
+|---|---|---|
+| cover, title slide, opening, first slide | Cover A / Cover B (dark) | `cover-a` / `cover-b` |
+| cover with photo, hero image, cover + accreditations, badges | Cover A v2 / Cover B v2 | `cover-a-v2` / `cover-b-v2` |
+| partnership, partner, SmartCo × client, joint, alliance, "with <client>" | Partnership | `partnership` |
+| contents, agenda, table of contents, overview of sections, what we'll cover | Contents | `contents` |
+| section, chapter, part, divider, break | Section Header A | `section-header-a` |
+| section with client logo, client story, case study, challenge / what we delivered | 1_Section Header A | `section-header-b` |
+| full-bleed photo, image only, visual break, mood | Full page image placeholder | `full-image` |
+| text slide, overview, about us, why, intro, key messages, chart, graph, table, comparison, matrix, cards, icons, key numbers, stats, KPIs, metrics (one-line title) | Template 1 (no shapes) / Template 2 (corner shapes) | `template-1` / `template-2` |
+| same, longer two-line title; dense content, framework, process, steps, phases | Template 3 (no shapes) / Template 4 (corner shapes) | `template-3` / `template-4` |
+| text + photo, text + image, people photo, product shot | Template 5 - 2 column with image | `two-column-image` |
+| text + highlighted panel, problem / solution, what you need, key takeaways, callout panel | Template 6 - 2 column solid colour (blue) / Green | `two-column-blue` / `two-column-green` |
+| variety, alternate look, working together, values, principles | Template 7 / Template 8 - Alternate Graphic A / B | `alternate-graphic-a` / `alternate-graphic-b` |
+| delivery, timeline, roadmap, plan, 30/60/90, milestones, phases, mobilisation, execution | Template 9 - Delivery Yellow | `delivery-yellow` |
+| quote, testimonial, what clients say, client feedback, endorsement | Quote template | `quote` |
+| your lead, account lead, engagement lead, single contact, bio, CV, profile | 1_Quote template ("Your SmartCo Lead") | `quote-lead` |
+| team, meet the team, people, who you'll work with, bios (2–4 people) | Meet the Team | `meet-the-team` |
+| thank you, closing, contact us, next steps contact, end | End Slide | `end` |
+
+- Keywords for content with no dedicated layout (timeline, table, cards, key numbers, process): build it on Template 1 / 3 (no corner shapes), or Delivery Yellow for timelines; follow deck.md §6 colour rules.
+- Ambiguous request ("make a slide about X"): pick by the content of X using the table; if two layouts fit equally, ask one question naming them.
 
 Files:
 - Rules: deck.md (read fully; its `Overrides:` beat core). Status: draft v0.4, values taken from the PowerPoint master SmartCo-Deck.potx.
