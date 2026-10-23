@@ -1,6 +1,6 @@
 ---
 name: smartco-design
-description: Use this skill to generate well-branded interfaces and assets for SmartCo, either for production or throwaway prototypes/mocks/etc. Contains essential design guidelines, colors, type, fonts, assets, and UI kit components for protoyping. Also use for SmartCo social media posts (LinkedIn 1080×1080: new joiner / welcome, we are hiring / vacancy, announcements, events, quotes, stats) and SmartCo Word documents (A4 .docx/PDF: white papers, reports, proposals, sell sheets / one-pagers), including reformatting an existing document to the brand.
+description: Use this skill to generate well-branded interfaces and assets for SmartCo, either for production or throwaway prototypes/mocks/etc. Contains essential design guidelines, colors, type, fonts, assets, and UI kit components for protoyping. Also use for SmartCo social media posts (LinkedIn 1080×1080: new joiner / welcome, we are hiring / vacancy, announcements, events, quotes, stats), SmartCo Word documents (A4 .docx/PDF: white papers, reports, proposals, sell sheets / one-pagers), including reformatting an existing document to the brand, and SmartCo presentations (16:9 decks: PowerPoint, Google Slides, PDF, HTML slides).
 user-invocable: true
 ---
 
@@ -8,9 +8,9 @@ Read the readme.md file within this skill, and explore the other available files
 If creating visual artifacts (slides, mocks, throwaway prototypes, etc), copy assets out and create static HTML files for the user to view. If working on production code, you can copy assets and read the rules here to become an expert in designing with this brand.
 If the user invokes this skill without any other guidance, ask them what they want to build or design, ask some questions, and act as an expert designer who outputs HTML artifacts _or_ production code, depending on the need.
 
-For Word documents (white papers, proposals, reports) also follow documents.md. For social posts follow social.md.
+For Word documents (white papers, proposals, reports) also follow documents.md. For social posts follow social.md. For presentations / decks follow deck.md.
 
-Key rules (from uploads/00-core.md): only the 8 color tokens; heading font 700/600 and body font 400/600 only; no gradients, shadows, glows or 3D (except the hexagon shadows built into the social template); max one accent per layout; accent colors as text only in the `number` role on white (accent-1 ≥24px, accent-2 ≥48px); ALL CAPS only for eyebrow and overline; body text left-aligned; ≥80% solid overlay under text on photos. Format-specific overrides listed in the `Overrides:` header of documents.md / social.md take precedence over these key rules.
+Key rules (from uploads/00-core.md): only the 8 color tokens; heading font 700/600 and body font 400/600 only; no gradients, shadows, glows or 3D (except the hexagon shadows built into the social template); max one accent per layout; accent colors as text only in the `number` role on white (accent-1 ≥24px, accent-2 ≥48px); ALL CAPS only for eyebrow and overline; body text left-aligned; ≥80% solid overlay under text on photos. Format-specific overrides listed in the `Overrides:` header of documents.md / social.md / deck.md take precedence over these key rules.
 
 ## Routing: documents
 
@@ -36,7 +36,7 @@ Files:
 1. Always start from SmartCo-Document.dotx, never a blank file. Format only through named styles (documents.md §3.1); no direct formatting.
 2. Deliverable is .docx (editable) and/or PDF (documents.md §12). Ask which if not stated. File name: "SmartCo – <Title> – <Month YYYY>".
 3. If the type is unclear, ask one question: "White paper, report, proposal or sell sheet?"
-4. Not covered by documents.md — ask, don't guess: slides / deck / presentation (deck.md is planned, not active), social posts (→ social.md), "case study" (document or social post?), press release, email, web page.
+4. Not covered by documents.md — ask, don't guess: slides / deck / presentation (→ deck.md), social posts (→ social.md), "case study" (document or social post?), press release, email, web page.
 5. Before handoff run the checklist in documents.md §13.
 
 ## Routing: social posts
@@ -55,3 +55,25 @@ Trigger words: social, social media, social post, post, LinkedIn, LI post, feed 
 4. "post" without social/LinkedIn context (blog post, article, forum post) is NOT a social post — ask before using social.md.
 5. Output: the template with the matching `variant` filled in; export PNG 1080×1080 (2× = 2160×2160).
 6. Before handoff check: ≤ 15 words on the graphic, text ≥ 32 px and only sizes from social.md §3, UK English, sentence case, no emoji or exclamation marks, no `accent-1`, no text on hexagons, logo not covered or resized.
+
+## Routing: presentations
+
+Trigger words: presentation, deck, slides, slide deck, slide, PowerPoint, PPT, .pptx, .potx, Google Slides, keynote, 16:9, pitch deck, webinar slides, workshop slides.
+
+| Signal in prompt | Layouts (deck.md §4) |
+|---|---|
+| pitch deck, client proposal deck, sales deck, credentials deck | Cover, Agenda, Section divider, Title + content, Key number / Stats row, Team, Closing |
+| webinar, workshop, training, talk, keynote | Cover, Agenda, Section divider, Title + content, Two columns, Quote, Closing |
+| results, QBR, report deck, update, review | Cover, Title + content, Key number, Stats row, Chart / table, Closing |
+| single slide, one slide, add a slide | the one layout that fits the content (§4) |
+| reformat, rebrand, apply SmartCo style to a deck, check this deck | §2 theme, §3 type scale, §12 checklist |
+
+Files:
+- Rules: deck.md (read fully; its `Overrides:` beat core). Status: draft v0.1 — values marked *proposed* are not yet approved.
+- Template: not built yet (templates/presentation/ planned, deck.md §11). Build from deck.md and tokens/ until it exists.
+
+1. Always read deck.md fully before building. Use only the 11 layouts in §4; never invent a new arrangement.
+2. One message per slide; titles are sentence-case takeaways; ≤ 5 bullets.
+3. Deliverable: PDF by default, PPTX if the client must edit, HTML slides at 1920×1080 for previews (deck.md §10). Ask which if not stated. File name: "SmartCo – <Title> – <Month YYYY>".
+4. "Slide" inside a social carousel (1080×1080) is a social post → social.md, not deck.md. If unclear, ask.
+5. Before handoff run the checklist in deck.md §12.
