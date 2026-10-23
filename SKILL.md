@@ -58,22 +58,27 @@ Trigger words: social, social media, social post, post, LinkedIn, LI post, feed 
 
 ## Routing: presentations
 
-Trigger words: presentation, deck, slides, slide deck, slide, PowerPoint, PPT, .pptx, .potx, Google Slides, keynote, 16:9, pitch deck, webinar slides, workshop slides.
+Trigger words: presentation, deck, slides, slide deck, slide, PowerPoint, PPT, .pptx, .potx, Google Slides, keynote, 16:9, pitch deck, sales deck, webinar slides, workshop slides.
 
-| Signal in prompt | Layouts (deck.md §4) |
+| Signal in prompt | Masters (deck.md §4, `variant`) |
 |---|---|
-| pitch deck, client proposal deck, sales deck, credentials deck | Cover, Agenda, Section divider, Title + content, Key number / Stats row, Team, Closing |
-| webinar, workshop, training, talk, keynote | Cover, Agenda, Section divider, Title + content, Two columns, Quote, Closing |
-| results, QBR, report deck, update, review | Cover, Title + content, Key number, Stats row, Chart / table, Closing |
-| single slide, one slide, add a slide | the one layout that fits the content (§4) |
-| reformat, rebrand, apply SmartCo style to a deck, check this deck | §2 theme, §3 type scale, §12 checklist |
+| sales deck, pitch deck, client proposal, credentials | `cover-a` / `cover-b`, `partnership` (if a client is named), `contents`, `section-header-a`, `template-1`…`template-4`, `two-column-*`, `quote`, `quote-lead`, `meet-the-team`, `end` |
+| webinar, workshop, training, talk, keynote | `cover-a-v2` / `cover-b-v2`, `contents`, `section-header-a`, `template-*`, `alternate-graphic-*`, `full-image`, `end` |
+| results, QBR, update, delivery plan, timeline | `cover-a`, `template-1` / `template-3` (charts, tables), `delivery-yellow`, `two-column-blue`, `end` |
+| testimonial, client quote | `quote` |
+| team, who we are, your team | `meet-the-team`, `quote-lead` |
+| single slide, one slide, add a slide | the one master that fits (deck.md §4) |
+| reformat, rebrand, apply SmartCo style to a deck, check this deck | deck.md §2 theme, §3 type scale, §12 checklist |
 
 Files:
-- Rules: deck.md (read fully; its `Overrides:` beat core). Status: draft v0.1 — values marked *proposed* are not yet approved.
-- Template: not built yet (templates/presentation/ planned, deck.md §11). Build from deck.md and tokens/ until it exists.
+- Rules: deck.md (read fully; its `Overrides:` beat core). Status: draft v0.4, values taken from the PowerPoint master SmartCo-Deck.potx.
+- PowerPoint master: templates/presentation/SmartCo-Deck.potx (23 layouts, from the designer's deck).
+- HTML template: templates/presentation/Deck.dc.html (23 masters, `variant` switch); shapes in templates/presentation/assets/.
+- Scripts: templates/presentation/import-master.py (PowerPoint master), build-deck.py (HTML).
+- Source: Figma SmartCo-Assets-v2.0, node 6199:2.
 
-1. Always read deck.md fully before building. Use only the 11 layouts in §4; never invent a new arrangement.
-2. One message per slide; titles are sentence-case takeaways; ≤ 5 bullets.
+1. Always read deck.md fully before building. Use only the 23 masters; never invent a new arrangement or move the brand shapes.
+2. One message per slide; titles are sentence-case takeaways; ≤ 5 bullets; ALL CAPS only in the section label; body emphasis in Roboto SemiBold 600, never Bold.
 3. Deliverable: PDF by default, PPTX if the client must edit, HTML slides at 1920×1080 for previews (deck.md §10). Ask which if not stated. File name: "SmartCo – <Title> – <Month YYYY>".
 4. "Slide" inside a social carousel (1080×1080) is a social post → social.md, not deck.md. If unclear, ask.
-5. Before handoff run the checklist in deck.md §12.
+5. Before handoff run the checklist in deck.md §12: no placeholder boxes left.
