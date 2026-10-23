@@ -1,8 +1,8 @@
 ---
 file: social.md
 brand: SmartCo
-version: 0.2
-updated: 2026-10-19
+version: 0.3
+updated: 2026-10-23
 inherits: 00-core.md v1.1
 covers: Social media posts — LinkedIn square (1080 × 1080 px)
 source: Figma "Social Templates.fig" (page Design: SmartCo-LI-New_Joiner 1:56, SmartCo-LI-We_are_hiring 1:3, SmartCo-LI-empty 1:32); original link https://www.figma.com/design/efBigiaEDHAo8OuE2H4XLU/SmartCo-Assets-v2.0?node-id=6192-236
@@ -11,6 +11,7 @@ Overrides:
   - core §4.1 weights 400/600/700 — social posts also use Roboto **500 Medium** (job title) and **900 Black** (welcome label). Reason: as designed in the Figma file. Fonts shipped in fonts/.
   - core §4.3 ALL CAPS ≤ 3 words / eyebrow role — social labels `post-label` and `post-role` are ALL CAPS with wide tracking (as designed).
   - core §2 "max one accent per layout" (SHOULD) — the New joiner post uses `accent-2` hexagon together with `primary` + `secondary`. Reason: as designed.
+  - core §2 "MUST NOT use drop shadows" — the bottom-left `primary` and `secondary` hexagons carry soft drop shadows (§2.1). Reason: as designed in the Figma file. Applies to these template hexagons only; no other element may have a shadow.
 ---
 
 # SmartCo — Social posts
@@ -119,6 +120,8 @@ Text column at x 72, y 300, width 910, vertical stack, gap 40 px:
 - The "WELCOME" text component is 71.35 px Black in Figma but renders at ≈ 57 px in the frame (scaled instance); 57 px is used.
 
 ## 8. Changelog
+
+- 0.3 — 2026-10-23 — Override added for the hexagon drop shadows (core §2).
 
 - 0.2 — 2026-10-19 — Empty: any content allowed in the free area; We are hiring: placeholder text; New joiner: image placeholder instead of photo.
 
