@@ -5,7 +5,10 @@ Removes: all slides and their notes / media, SharePoint metadata (customXml, cus
          (webextensions), revision info, the thumbnail.
 Fixes:   colour codes -> 00-core.md values (where a colour is used is not changed);
          theme font family -> Roboto (headings and body), Calibri -> Roboto;
+         body-font bold -> Roboto SemiBold 600; followed hyperlink -> primary;
          the notes-master theme gets the same SmartCo colours and fonts.
+Embeds:  Roboto Regular / Bold / Italic / Bold Italic and Roboto SemiBold / SemiBold Italic from fonts/
+         (Embedded OpenType .fntdata parts), so decks open in Roboto where the font is not installed.
 
 Usage: python3 import-master.py "<source>.pptx" [SmartCo-Deck.potx]
 Stdlib only.
@@ -95,6 +98,73 @@ def semibold(sp):
     return re.sub(r"<a:(defRPr|rPr|endParaRPr)\b([^>]*?)/>", single, sp)
 
 
+FONTS_DIR = posixpath.join(posixpath.dirname(posixpath.abspath(__file__)), "..", "..", "fonts")
+# (typeface PowerPoint uses, embeddedFont slot, file in fonts/)
+EMBED = [("Roboto", "regular", "Roboto-Regular.ttf"), ("Roboto", "bold", "Roboto-Bold.ttf"),
+         ("Roboto", "italic", "Roboto-Italic.ttf"), ("Roboto", "boldItalic", "Roboto-BoldItalic.ttf"),
+         ("Roboto SemiBold", "regular", "Roboto-SemiBold.ttf"), ("Roboto SemiBold", "italic", "Roboto-SemiBoldItalic.ttf")]
+
+
+def eot(ttf):
+    """Wrap a TrueType font as uncompressed Embedded OpenType (version 0x00020001) — the format of
+    PowerPoint's embedded font parts (.fntdata)."""
+    import struct
+    n = struct.unpack(">H", ttf[4:6])[0]
+    tab = {ttf[12 + 16 * i:16 + 16 * i].decode("latin1"): struct.unpack(">II", ttf[20 + 16 * i:28 + 16 * i])
+           for i in range(n)}
+    os2 = tab["OS/2"][0]
+    weight, fstype = struct.unpack(">H", ttf[os2 + 4:os2 + 6])[0], struct.unpack(">H", ttf[os2 + 8:os2 + 10])[0]
+    panose = ttf[os2 + 32:os2 + 42]
+    urange = struct.unpack(">4I", ttf[os2 + 42:os2 + 58])
+    fsel = struct.unpack(">H", ttf[os2 + 62:os2 + 64])[0]
+    cprange = struct.unpack(">2I", ttf[os2 + 78:os2 + 86])
+    csa = struct.unpack(">I", ttf[tab["head"][0] + 8:tab["head"][0] + 12])[0]
+    no = tab["name"][0]
+    cnt, so = struct.unpack(">HH", ttf[no + 2:no + 6])
+    names = {}
+    for j in range(cnt):
+        pid, eid, lid, nid, ln, off = struct.unpack(">6H", ttf[no + 6 + 12 * j:no + 18 + 12 * j])
+        if pid == 3 and eid == 1 and lid == 0x409:
+            names[nid] = ttf[no + so + off:no + so + off + ln].decode("utf-16-be").encode("utf-16-le")
+    body = b""
+    for nid in (1, 2, 5, 4):  # family, style, version, full name
+        s = names.get(nid, b"")
+        body += struct.pack("<HH", 0, len(s)) + s
+    body += struct.pack("<HH", 0, 0)  # Padding5, RootStringSize
+    head = struct.pack("<IIII", 0, len(ttf), 0x00020001, 0) + panose + struct.pack(
+        "<BBIHH4I2II4I", 1, fsel & 1, weight, fstype, 0x504C, *urange, *cprange, csa, 0, 0, 0, 0)
+    total = len(head) + len(body) + len(ttf)
+    return struct.pack("<I", total) + head[4:] + body + ttf
+
+
+def embed_fonts(out):
+    pres, rels = "ppt/presentation.xml", "ppt/_rels/presentation.xml.rels"
+    by_face, rel_xml = {}, out[rels].decode("utf8")
+    for i, (face, slot, f) in enumerate(EMBED, 1):
+        with open(posixpath.join(FONTS_DIR, f), "rb") as fh:
+            out[f"ppt/fonts/font{i}.fntdata"] = eot(fh.read())
+        rid = f"rIdFont{i}"
+        rel_xml = rel_xml.replace("</Relationships>", f'<Relationship Id="{rid}" Type="http://schemas.openxmlformats.org/'
+                                  f'officeDocument/2006/relationships/font" Target="fonts/font{i}.fntdata"/></Relationships>')
+        by_face.setdefault(face, []).append(f'<p:{slot} r:id="{rid}"/>')
+    out[rels] = rel_xml.encode("utf8")
+    order = ["regular", "bold", "italic", "boldItalic"]  # schema order inside p:embeddedFont
+    lst = "<p:embeddedFontLst>" + "".join(
+        f'<p:embeddedFont><p:font typeface="{face}" pitchFamily="2" charset="0"/>'
+        + "".join(sorted(els, key=lambda e: order.index(re.search(r"<p:(\w+)", e).group(1)))) + "</p:embeddedFont>"
+        for face, els in by_face.items()) + "</p:embeddedFontLst>"
+    x = out[pres].decode("utf8")
+    x = re.sub(r"<p:embeddedFontLst>.*?</p:embeddedFontLst>", "", x, flags=re.S)
+    x = re.sub(r"(<p:notesSz\b[^>]*/>)", lambda m: m.group(1) + lst, x, count=1)  # embeddedFontLst follows notesSz
+    x = re.sub(r"<p:presentation\b", '<p:presentation embedTrueTypeFonts="1"', x.replace(' embedTrueTypeFonts="1"', ""), count=1)
+    x = x.replace(' saveSubsetFonts="1"', "")  # full fonts, so recipients can edit
+    out[pres] = x.encode("utf8")
+    ct = out["[Content_Types].xml"].decode("utf8")
+    if 'Extension="fntdata"' not in ct:
+        ct = ct.replace("<Default ", '<Default Extension="fntdata" ContentType="application/x-fontdata"/><Default ', 1)
+    out["[Content_Types].xml"] = ct.encode("utf8")
+
+
 def main(src_path, out_path):
     zin = zipfile.ZipFile(src_path)
     src = {n: zin.read(n) for n in zin.namelist()}
@@ -177,6 +247,9 @@ def main(src_path, out_path):
     ct = src["[Content_Types].xml"].decode("utf8").replace(PRESENTATION_CT, TEMPLATE_CT)
     ct = re.sub(r'<Override PartName="/([^"]+)"[^>]*/>', lambda m: m.group(0) if m.group(1) in out else "", ct)
     out["[Content_Types].xml"] = ct.encode("utf8")
+
+    # 8. Embed Roboto (regular, bold, italics, SemiBold) so decks open in Roboto without the font installed.
+    embed_fonts(out)
 
     with zipfile.ZipFile(out_path, "w", zipfile.ZIP_DEFLATED) as z:
         z.writestr("[Content_Types].xml", out.pop("[Content_Types].xml"))

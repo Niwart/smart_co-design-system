@@ -102,8 +102,8 @@ Layout names as in the PowerPoint master; `variant` in Deck.dc.html (deck.md §4
 - Ambiguous request ("make a slide about X"): pick by the content of X using the table; if two layouts fit equally, ask one question naming them.
 
 Files:
-- Rules: deck.md (read fully; its `Overrides:` beat core). Status: draft v0.4, values taken from the PowerPoint master SmartCo-Deck.potx.
-- PowerPoint master: templates/presentation/SmartCo-Deck.potx (23 layouts, from the designer's deck).
+- Rules: deck.md (read fully; its `Overrides:` beat core). Status: draft v0.5, values taken from the PowerPoint master SmartCo-Deck.potx.
+- PowerPoint master: templates/presentation/SmartCo-Deck.potx (23 layouts, from the designer's deck; Roboto embedded — keep font embedding on when saving, deck.md §10).
 - HTML template: templates/presentation/Deck.dc.html (23 masters, `variant` switch); shapes in templates/presentation/assets/.
 - Scripts: templates/presentation/import-master.py (PowerPoint master), build-deck.py (HTML).
 - Source: Figma SmartCo-Assets-v2.0, node 6199:2.

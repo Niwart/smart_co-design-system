@@ -1,7 +1,7 @@
 ---
 file: deck.md
 brand: SmartCo
-version: 0.4
+version: 0.5
 updated: 2026-10-23
 status: draft
 inherits: 00-core.md v1.1
@@ -24,8 +24,8 @@ All tokens (`primary`, `secondary`, `accent-2`, `neutral-900`…) are defined in
 
 - MUST start every deck from the SmartCo master: `templates/presentation/SmartCo-Deck.potx` in PowerPoint, `Deck.dc.html` for HTML slides (§11). Never start from a blank file or a copy of an old client deck.
 - MUST use only the 23 master layouts (§4): *Home → New Slide* / *Layout*. Do not move, resize or recolour the brand shapes; they sit on the layouts. Only the placeholders change per slide.
-- MUST use only Roboto: headings Bold 700, body Regular 400 and SemiBold 600 (core §4.1). Emphasis in body text = **Roboto SemiBold**, not *Ctrl+B* (Ctrl+B gives Bold 700). Install Roboto from `fonts/` before editing.
-- Editable PPTX sent to clients MUST embed fonts (§10).
+- MUST use only Roboto: headings Bold 700, body Regular 400 and SemiBold 600 (core §4.1). Emphasis in body text = **Roboto SemiBold**, not *Ctrl+B* (Ctrl+B gives Bold 700). The template carries Roboto embedded (§11.1); installing Roboto from `fonts/` is still recommended for editing.
+- Every PPTX saved or sent MUST keep the fonts embedded: turn font embedding on before saving (§10).
 - One message per slide. If a slide needs two titles, make it two slides.
 
 ## 1. Slide setup
@@ -270,7 +270,10 @@ All tokens (`primary`, `secondary`, `accent-2`, `neutral-900`…) are defined in
 
 ## 10. Export and handoff
 
-- PDF for external recipients by default. PPTX only when the client must edit: *File → Options → Save → Embed fonts* ON, *Embed only the characters used* OFF.
+- PDF for external recipients by default. PPTX only when the client must edit.
+- Font embedding MUST be on for every saved PPTX, or PowerPoint drops the embedded Roboto on save and recipients without Roboto SemiBold get Arial:
+  - Windows: *File → Options → Save → Embed fonts in the file* ON, *Embed all characters* (not only the characters used);
+  - Mac: *PowerPoint → Preferences → Save → Embed fonts in the file* ON.
 - HTML: export each slide at 1920 × 1080 (PNG) or print to PDF at 16:9.
 - File name: `SmartCo – <Title> – <Month YYYY>.pdf` (same pattern as documents).
 - Before export: empty placeholders deleted, hidden / unused slides removed, comments deleted, speaker notes checked for internal content, *Inspect Presentation* run.
@@ -286,7 +289,8 @@ All tokens (`primary`, `secondary`, `accent-2`, `neutral-900`…) are defined in
   - theme fonts Aptos Display / Aptos → Roboto; Calibri → Roboto;
   - body-font bold (≤ 18 pt, except the 9 pt section label) → Roboto SemiBold 600; headings stay Bold 700;
   - Followed hyperlink `secondary` → `primary`;
-  - the notes master uses the same SmartCo theme.
+  - the notes master uses the same SmartCo theme;
+  - Roboto embedded (Embedded OpenType, full fonts): Regular, Bold, Italic, Bold Italic, SemiBold, SemiBold Italic. Without embedding, PowerPoint for Mac rendered Roboto SemiBold as Arial (Regular and Bold were available), so recipients without the font installed may see the same. Checked on PowerPoint for Mac: opens with the embedded SemiBold; re-saving keeps the fonts only when font embedding is on (§10).
 - Logos on the layouts are PNG in the brand colours (`0065FC`, `000000`, `FFFFFF`).
 - To update after the designer changes the deck: `python3 import-master.py "<deck>.pptx" SmartCo-Deck.potx`.
 
@@ -299,7 +303,7 @@ All tokens (`primary`, `secondary`, `accent-2`, `neutral-900`…) are defined in
 ## 12. Checklist before sending
 
 - [ ] Built from the SmartCo master; brand shapes untouched
-- [ ] Only Roboto: 700 headings, 400 / 600 body; emphasis in SemiBold, not Ctrl+B; only sizes from §3; fonts embedded
+- [ ] Only Roboto: 700 headings, 400 / 600 body; emphasis in SemiBold, not Ctrl+B; only sizes from §3; font embedding on when saving
 - [ ] Only core colours; no tints; charts recoloured away from `accent-1`
 - [ ] Max one accent per slide; `accent-2` shape only on Delivery Yellow
 - [ ] Titles are sentence-case takeaways; ALL CAPS only in the section label
@@ -319,6 +323,7 @@ All tokens (`primary`, `secondary`, `accent-2`, `neutral-900`…) are defined in
 
 ## 14. Changelog
 
+- 0.5 — 2026-10-23 — Roboto embedded in the PowerPoint master; font-embedding setting required when saving (§10).
 - 0.4 — 2026-10-23 — Aligned to the PowerPoint master: theme colour slots, type scale in pt (body levels 17 / 12 pt, line spacing 100% / 90%), layout names and placeholders, footer 1 pt. Body emphasis Roboto SemiBold 600 (core §4.1); followed hyperlink `primary`.
 - 0.3 — 2026-10-23 — PowerPoint master `SmartCo-Deck.potx` imported from the designer's deck (master + 23 layouts; colour codes and theme fonts fixed).
 - 0.2 — 2026-10-23 — Rebuilt from the Figma masters (node 6199:2): 23 layouts, positions and type scale, template `Deck.dc.html` + SVG shapes.
