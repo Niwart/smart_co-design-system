@@ -11,7 +11,8 @@ folder works as a design-system repo and as a Claude Code skill.
 | Path | Contents |
 | --- | --- |
 | `SKILL.md` | Skill entry point (`smartco-design`) and key brand rules |
-| `readme.md` | Full design-system documentation (content, visual foundations, logo, fonts, index) |
+| `readme.md` | Index: where each rule lives, defaults not in core, file map |
+| `deck.md` | Rules for presentations (16:9) |
 | `documents.md` | Rules for Word documents (white papers, proposals, reports) |
 | `social.md` | Rules for social posts (LinkedIn 1080×1080) |
 | `styles.css` | CSS entry point — imports everything in `tokens/` |
@@ -20,6 +21,7 @@ folder works as a design-system repo and as a Claude Code skill.
 | `guidelines/` | Specimen cards: colors, type, spacing, brand rules |
 | `components/` | React primitives — Logo, Eyebrow, Overline, Heading, Text, KeyNumber, Button, Tag, Card, DataTable (`.jsx`, `.d.ts`, `.prompt.md`) |
 | `templates/document/` | Word template `SmartCo-Document.dotx`, sample `.docx`, HTML preview, `build-dotx.js` |
+| `templates/presentation/` | PowerPoint master `SmartCo-Deck.potx`, HTML slides `Deck.dc.html`, build scripts |
 | `templates/social/` | `SocialPost.dc.html` — New joiner, We are hiring, Empty layouts |
 | `assets/` | Logos (colour / white SVG), brand hexagons, placeholders |
 | `uploads/` | Original sources: `00-core.md` (single source of truth), Roboto family, logos, source doc |

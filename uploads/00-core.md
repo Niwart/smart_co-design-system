@@ -1,8 +1,8 @@
 ---
 file: 00-core.md
 brand: SmartCo
-version: 1.1
-updated: 2026-09-29
+version: 1.2
+updated: 2026-11-20
 owner: Arty
 role: Single source of truth. All asset files inherit from this file.
 ---
@@ -18,10 +18,75 @@ role: Single source of truth. All asset files inherit from this file.
 
 ## 1. Brand essence
 
-- **Audience:** WHO_WE_SPEAK_TO
-- **Personality:** WORD_1 · WORD_2 · WORD_3
-- **Tone of voice:** e.g. Short declarative sentences. No exclamation marks. Plain language over jargon.
+- **Audience:** senior leaders in large organisations who are accountable for outcomes and short on time. They don't need educating; they need a partner who understands the pressure, knows the terrain and gets things done.
+- **Positioning:** Digital Enablement Partner for Complex Change. USP: excellence in delivery.
+- **Personality:** Direct, experienced and honest · Peer-level and collaborative · Clear and reassuring under pressure
+- **Tone of voice:** see 1.1.
 - **Visual summary:** e.g. Generous white space, one strong accent per layout, data over decoration.
+
+### 1.1 Tone of voice
+
+Source: *SmartCo tone of voice guide* (PDF). We are technically minded people who have done this before and stay with the client until equilibrium is restored.
+
+#### Three anchors
+
+Everything we say and write MUST feel like all three. If it doesn't, it isn't SmartCo yet.
+
+1. **Direct, experienced and honest**
+2. **Peer-level and collaborative**
+3. **Clear and reassuring under pressure**
+
+#### How tone supports the offer (excellence in delivery)
+
+- Prioritise **what will actually happen**, not what "could" happen.
+- Speak from **lived experience**, not frameworks alone.
+- Make complex, high-stakes situations feel **manageable and under control**.
+
+#### Core principles
+
+| Principle | What it means |
+|---|---|
+| **We speak from experience** | Direct and concise, because we've lived through these situations before. We guide clients on what works in practice — and say so plainly. |
+| **We speak as equals** | We work shoulder-to-shoulder with clients. Language is collaborative, respectful and grounded in shared accountability. |
+| **We make the complicated feel simple** | Break complex technical and delivery challenges into clear, actionable steps. Language reassures and restores control, especially when the stakes are high. |
+
+#### Do / avoid
+
+| Do (SHOULD) | Avoid (SHOULD NOT) |
+|---|---|
+| Plain English and short sentences | Buzzwords and vague transformation clichés |
+| Be specific about actions, outcomes and responsibilities | Over-promising or exaggerated claims |
+| Sound calm, confident and unflustered | Talking "at" the reader |
+| Focus on delivery, progress and control | Abstract vision without execution detail |
+| Acknowledge pressure and complexity directly | Jargon-heavy or academic language |
+
+#### Before and after
+
+| Generic | SmartCo |
+|---|---|
+| "We partner with organisations to drive transformational change and unlock long-term value through innovative digital solutions." | "We step in when digital change becomes business-critical, bringing senior expertise to keep programmes moving, risks controlled and outcomes on track." |
+| "Our framework ensures best-practice delivery across complex environments." | "We start by stabilising what matters most, prove value quickly, then scale delivery with clear milestones, regular updates and no surprises." |
+| "Our consultants work closely with clients throughout the engagement." | "Our senior team stays hands-on from day one, working alongside your teams until the job is done." |
+
+#### By channel
+
+| Channel | Tone | Focus |
+|---|---|---|
+| Sales conversations | Confident, practical, grounded | What we've done, how we work, how quickly we mobilise — not big-picture theory. |
+| Proposals and decks | Outcome-led and structured | Clear phases, responsibilities and risks. Less "why transformation matters", more "how this will run". |
+| Website and thought leadership | Direct and credible | Real pressures clients face. Delivery excellence, senior expertise, critical situations. |
+| Social media | Still professional, still clear | Human and approachable, never flippant or over-casual. |
+
+#### Mechanics (all formats)
+
+- MUST use UK English spelling: organisation, programme, prioritise, mobilise.
+- MUST NOT use exclamation marks or emoji.
+- MUST use sentence case for headlines and body; ALL CAPS only for `eyebrow` and `overline` (see 4.3). No full stop at the end of a headline.
+- SHOULD write headlines as takeaways, not topics: "Reporting time fell each month", not "Reporting time".
+- SHOULD use "we" for SmartCo and "you" for the reader. Third person only for bios.
+- **Numbers:** numerals for 10+ and all percentages ("70%", no space). Units in caps: 12.4M, 3.2BN, 850K.
+- **Dashes:** spaced em dash " — " for breaks; en dash without spaces for ranges ("2024–2026").
+- **Quotes:** curly double “ ” for quotes; curly single ‘ ’ only for quotes inside quotes.
 
 ## 2. Global hard rules
 
@@ -127,3 +192,4 @@ role: Single source of truth. All asset files inherit from this file.
 
 - 1.0 — 2026-09-28 — Initial core tokens.
 - 1.1 — 2026-09-29 — Both accents allowed for `number` role on `white`; contrast exception for `accent-2`; accent text on `primary` forbidden.
+- 1.2 — 2026-11-20 — Tone of voice (1.1) from the SmartCo tone of voice guide; audience, positioning and personality filled in §1.
